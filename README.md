@@ -19,13 +19,25 @@ Module 3 focuses on **optimizing tensor operations** through parallel computing 
 
 ## Tasks Overview
 
-| Task    | Description 
-|---------|-------------
-| **3.1** | CPU Parallel Operations (`fast_ops.py`) 
-| **3.2** | CPU Matrix Multiplication (`fast_ops.py`) 
-| **3.3** | GPU Operations (`cuda_ops.py`)
-| **3.4** | GPU Matrix Multiplication (`cuda_ops.py`)
-| **3.5** | Performance Evaluation (`run_fast_tensor.py`)
+**Task 3.1**: CPU Parallel Operations
+File to edit: `minitorch/fast_ops.py`
+Feel free to use numpy functions like `np.array_equal()` and `np.zeros()`.
+
+**Task 3.2**: CPU Matrix Multiplication
+File to edit: `minitorch/fast_ops.py`
+Implement optimized batched matrix multiplication with parallel outer loops.
+
+**Task 3.3**: GPU Operations
+File to edit: `minitorch/cuda_ops.py`
+Implement CUDA kernels for tensor map, zip, and reduce operations.
+
+**Task 3.4**: GPU Matrix Multiplication
+File to edit: `minitorch/cuda_ops.py`
+Implement CUDA matrix multiplication with shared memory optimization for maximum performance.
+
+**Task 3.5**: Training
+File to edit: `project/run_fast_tensor.py`
+Implement missing functions and train models on all datasets to demonstrate performance improvements.
 
 ## Documentation
 
@@ -155,6 +167,40 @@ nvidia-smi -l 1  # Update every second
 - Write CUDA kernels for element-wise operations
 - Implement efficient GPU matrix multiplication with shared memory
 - Optimize thread block organization and memory coalescing
+
+## Task 3.5 Training Results
+
+### Performance Targets
+- **CPU Backend**: Below 2 seconds per epoch
+- **GPU Backend**: Below 1 second per epoch (on standard Colab GPU)
+
+### Training Commands
+```bash
+# CPU Backend
+python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET simple --RATE 0.05
+python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET split --RATE 0.05
+python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET xor --RATE 0.05
+
+# GPU Backend  
+python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET simple --RATE 0.05
+python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET split --RATE 0.05
+python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET xor --RATE 0.05
+```
+
+### Student Results
+**TODO: Add your training results here**
+
+#### Simple Dataset
+- CPU Backend: [Add time per epoch and accuracy]
+- GPU Backend: [Add time per epoch and accuracy]
+
+#### Split Dataset  
+- CPU Backend: [Add time per epoch and accuracy]
+- GPU Backend: [Add time per epoch and accuracy]
+
+#### XOR Dataset
+- CPU Backend: [Add time per epoch and accuracy] 
+- GPU Backend: [Add time per epoch and accuracy]
 
 ## Important Notes
 
