@@ -3,6 +3,9 @@ from typing import Callable, Dict, Iterable, List, Tuple
 
 import numba
 import numba.cuda
+from numba import config
+config.CUDA_ENABLE_PYNVJITLINK = 1
+
 import pytest
 from hypothesis import given, settings
 from hypothesis.strategies import DataObject, data, integers, lists, permutations
