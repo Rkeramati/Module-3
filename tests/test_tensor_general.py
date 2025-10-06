@@ -31,8 +31,6 @@ matmul_tests = [pytest.param("fast", marks=pytest.mark.task3_2)]
 
 
 if numba.cuda.is_available():
-    import os
-    os.environ['NUMBA_CUDA_DEFAULT_PTX_CC'] = '7.5'
     # ## Task 3.3
     backend_tests.append(pytest.param("cuda", marks=pytest.mark.task3_3))
 
