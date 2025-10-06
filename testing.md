@@ -79,6 +79,28 @@ python project/run_tensor.py     # Basic tensor implementation
 python project/run_scalar.py     # Scalar implementation
 ```
 
+### Parallel Diagnostics (Tasks 3.1 & 3.2)
+
+**Running Parallel Check:**
+```bash
+# Verify your parallel implementations
+python project/parallel_check.py
+```
+
+**Expected Output for Task 3.1:**
+- **MAP**: Should show parallel loops for both fast path and general case with allocation hoisting for `np.zeros()` calls
+- **ZIP**: Should show parallel loops for both fast path and general case with optimized memory allocations
+- **REDUCE**: Should show main parallel loop with proper allocation hoisting
+
+**Expected Output for Task 3.2:**
+- **MATRIX MULTIPLY**: Should show nested parallel loops for batch and row dimensions with no allocation hoisting (since no index buffers are used)
+
+**Key Success Indicators:**
+- Parallel loops detected with `prange()`
+- Memory allocations hoisted out of parallel regions
+- Loop optimizations applied by Numba
+- No unexpected function calls in critical paths
+
 ### Pre-commit Hooks (Automatic Style Checking)
 
 The project uses pre-commit hooks that run automatically before each commit:
