@@ -10,13 +10,6 @@
 
 Module 3 focuses on **optimizing tensor operations** through parallel computing and GPU acceleration. You'll implement CPU parallel operations using Numba and GPU kernels using CUDA, achieving dramatic performance improvements over the sequential tensor backend from Module 2.
 
-### Key Learning Goals
-- **CPU Parallelization**: Implement parallel tensor operations with Numba
-- **GPU Programming**: Write CUDA kernels for tensor operations
-- **Performance Optimization**: Achieve significant speedup through hardware acceleration
-- **Matrix Multiplication**: Optimize the most computationally intensive operations
-- **Backend Architecture**: Build multiple computational backends for flexible performance
-
 ## Tasks Overview
 
 **Task 3.1**: CPU Parallel Operations
@@ -87,7 +80,7 @@ pre-commit run --all-files
 
 ### Option 1: Google Colab (Recommended)
 Most students should use Google Colab for GPU tasks:
-
+https://colab.research.google.com/drive/1unW9QzB1eFDZ86hGJlIYACXvivhJH3YT
 1. Upload assignment files to Colab
 2. Change runtime to GPU (Runtime → Change runtime type → GPU)
 3. Install packages:
@@ -177,34 +170,11 @@ nvidia-smi -l 1  # Update every second
 ### Training Commands
 ```bash
 # CPU Backend
-python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET simple --RATE 0.05
-python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET split --RATE 0.05
-python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET xor --RATE 0.05
+python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET <dataset> --RATE 0.05
 
 # GPU Backend  
-python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET simple --RATE 0.05
-python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET split --RATE 0.05
-python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET xor --RATE 0.05
+python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET <dataset> --RATE 0.05
 ```
 
 ### Student Results
 **TODO: Add your training results here**
-
-#### Simple Dataset
-- CPU Backend: [Add time per epoch and accuracy]
-- GPU Backend: [Add time per epoch and accuracy]
-
-#### Split Dataset  
-- CPU Backend: [Add time per epoch and accuracy]
-- GPU Backend: [Add time per epoch and accuracy]
-
-#### XOR Dataset
-- CPU Backend: [Add time per epoch and accuracy] 
-- GPU Backend: [Add time per epoch and accuracy]
-
-## Important Notes
-
-- **GPU Limitations**: Tasks 3.3 and 3.4 cannot run in GitHub CI due to hardware requirements
-- **GPU Testing**: Use Google Colab (recommended) or local NVIDIA GPU for GPU tasks
-- **Performance Critical**: Implementations must show measurable speedup over sequential versions
-- **Memory Management**: Be careful with GPU memory allocation and deallocation
