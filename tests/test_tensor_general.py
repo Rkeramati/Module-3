@@ -191,6 +191,15 @@ if numba.cuda.is_available():
 
     @pytest.mark.task3_4
     def test_mul_practice1() -> None:
+        import numba
+        print(f"DEBUG: Numba version = {numba.__version__}")
+        from numba import cuda
+        print(f"DEBUG: CUDA available = {cuda.is_available()}")
+        if cuda.is_available():
+            print(f"DEBUG: GPU = {cuda.get_current_device().name}")
+            print(f"DEBUG: Compute capability = {cuda.get_current_device().compute_capability}")
+
+        
         x1 = [[random.random() for i in range(2)] for j in range(2)]
         y1 = [[random.random() for i in range(2)] for j in range(2)]
         z = minitorch.tensor(x1, backend=shared["fast"]) @ minitorch.tensor(
