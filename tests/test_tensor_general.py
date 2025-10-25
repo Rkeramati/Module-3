@@ -15,7 +15,8 @@ from .tensor_strategies import assert_close_tensor, shaped_tensors, tensors
 
 one_arg, two_arg, red_arg = MathTestVariable._comp_testing()
 
-
+from numba import config
+config.CUDA_ENABLE_PYNVJITLINK = 1
 # The tests in this file only run the main mathematical functions.
 # The difference is that they run with different tensor ops backends.
 
