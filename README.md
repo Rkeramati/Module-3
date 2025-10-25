@@ -14,8 +14,7 @@ Module 3 focuses on **optimizing tensor operations** through parallel computing 
 - **CPU Parallelization**: Implement parallel tensor operations with Numba
 - **GPU Programming**: Write CUDA kernels for tensor operations
 - **Performance Optimization**: Achieve significant speedup through hardware acceleration
-- **Matrix Multiplication**: Optimize the most computationally intensive operations
-- **Backend Architecture**: Build multiple computational backends for flexible performance
+- **Matrix Multiplication**: Optimize the most computationally intensive operations with operator fusion
 
 ## Tasks Overview
 
@@ -27,15 +26,15 @@ Feel free to use numpy functions like `np.array_equal()` and `np.zeros()`.
 File to edit: `minitorch/fast_ops.py`
 Implement optimized batched matrix multiplication with parallel outer loops.
 
-**Task 3.3**: GPU Operations
+**Task 3.3**: GPU Operations (requires GPU)
 File to edit: `minitorch/cuda_ops.py`
 Implement CUDA kernels for tensor map, zip, and reduce operations.
 
-**Task 3.4**: GPU Matrix Multiplication
+**Task 3.4**: GPU Matrix Multiplication (requires GPU)
 File to edit: `minitorch/cuda_ops.py`
 Implement CUDA matrix multiplication with shared memory optimization for maximum performance.
 
-**Task 3.5**: Training
+**Task 3.5**: Training (requires GPU)
 File to edit: `project/run_fast_tensor.py`
 Implement missing functions and train models on all datasets to demonstrate performance improvements.
 
@@ -44,95 +43,12 @@ Implement missing functions and train models on all datasets to demonstrate perf
 - **[Installation Guide](installation.md)** - Setup instructions including GPU configuration
 - **[Testing Guide](testing.md)** - How to run tests locally and handle GPU requirements
 
-## Quick Start
-
-### 1. Environment Setup
-```bash
-# Clone and navigate to your assignment
-git clone <your-assignment-repo>
-cd <assignment-directory>
-
-# Create virtual environment (recommended)
-conda create --name minitorch python
-conda activate minitorch
-
-# Install dependencies
-pip install -e ".[dev,extra]"
-```
-
-### 2. Sync Previous Module Files
-```bash
-# Sync required files from your Module 2 solution
-python sync_previous_module.py <path-to-module-2> .
-
-# Example:
-python sync_previous_module.py ../Module-2 .
-```
-
-### 3. Run Tests
-```bash
-# CPU tasks (run anywhere)
-pytest -m task3_1  # CPU parallel operations
-pytest -m task3_2  # CPU matrix multiplication
-
-# GPU tasks (require CUDA-compatible GPU)
-pytest -m task3_3  # GPU operations
-pytest -m task3_4  # GPU matrix multiplication
-
-# Style checks
-pre-commit run --all-files
-```
-
 ## GPU Setup
 
-### Option 1: Google Colab (Recommended)
-Most students should use Google Colab for GPU tasks:
-
-1. Upload assignment files to Colab
-2. Change runtime to GPU (Runtime → Change runtime type → GPU)
-3. Install packages:
-   ```python
-   !pip install -e ".[dev,extra]"
-   !python -c "import numba.cuda; print('CUDA available:', numba.cuda.is_available())"
-   ```
-
-### Option 2: Local GPU (If you have NVIDIA GPU)
-For students with NVIDIA GPUs and CUDA-compatible hardware:
-
-```bash
-# Install CUDA toolkit
-# Visit: https://developer.nvidia.com/cuda-downloads
-
-# Install GPU packages
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-pip install numba[cuda]
-
-# Verify GPU support
-python -c "import numba.cuda; print('CUDA available:', numba.cuda.is_available())"
-```
-
-## Testing Strategy
-
-### CI/CD (GitHub Actions)
-- **Task 3.1**: CPU parallel operations
-- **Task 3.2**: CPU matrix multiplication  
-- **Style Check**: Code quality and formatting
-
-### GPU Testing (Colab/Local GPU)
-- **Task 3.3**: GPU operations (use Colab or local NVIDIA GPU)
-- **Task 3.4**: GPU matrix multiplication (use Colab or local NVIDIA GPU)
-
-### Performance Validation
-```bash
-# Compare backend performance
-python project/run_fast_tensor.py    # Optimized backends
-python project/run_tensor.py         # Basic tensor backend
-python project/run_scalar.py         # Scalar baseline
-```
+Follow this [link](https://colab.research.google.com/drive/1gyUFUrCXdlIBz9DYItH9YN3gQ2DvUMsI?usp=sharing). Go to the Colab file → save to drive, select runtime to T4 and follow instructions.
 
 ## Development Tools
-
-### Code Quality
+## Code Quality
 ```bash
 # Automatic style checking
 pre-commit install
@@ -156,25 +72,9 @@ NUMBA_CUDA_DEBUG=1 pytest -m task3_3 -v
 nvidia-smi -l 1  # Update every second
 ```
 
-## Implementation Focus
-
-### Task 3.1 & 3.2 (CPU Optimization)
-- Implement `tensor_map`, `tensor_zip`, `tensor_reduce` with Numba parallel loops
-- Optimize matrix multiplication with efficient loop ordering
-- Focus on cache locality and parallel execution patterns
-
-### Task 3.3 & 3.4 (GPU Acceleration)  
-- Write CUDA kernels for element-wise operations
-- Implement efficient GPU matrix multiplication with shared memory
-- Optimize thread block organization and memory coalescing
-
-## Task 3.5 Training Results
-
-### Performance Targets
-- **CPU Backend**: Below 2 seconds per epoch
-- **GPU Backend**: Below 1 second per epoch (on standard Colab GPU)
-
 ### Training Commands
+
+#### Local Environment
 ```bash
 # CPU Backend
 python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET simple --RATE 0.05
@@ -185,6 +85,14 @@ python project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET xor --RAT
 python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET simple --RATE 0.05
 python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET split --RATE 0.05
 python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET xor --RATE 0.05
+```
+
+#### Google Colab (Recommended)
+```bash
+# GPU Backend examples
+!cd $DIR; PYTHONPATH=/content/$DIR python3.11 project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET simple --RATE 0.05
+!cd $DIR; PYTHONPATH=/content/$DIR python3.11 project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET split --RATE 0.05
+!cd $DIR; PYTHONPATH=/content/$DIR python3.11 project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET xor --RATE 0.05
 ```
 
 ### Student Results
@@ -201,10 +109,3 @@ python project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET xor --RAT
 #### XOR Dataset
 - CPU Backend: [Add time per epoch and accuracy] 
 - GPU Backend: [Add time per epoch and accuracy]
-
-## Important Notes
-
-- **GPU Limitations**: Tasks 3.3 and 3.4 cannot run in GitHub CI due to hardware requirements
-- **GPU Testing**: Use Google Colab (recommended) or local NVIDIA GPU for GPU tasks
-- **Performance Critical**: Implementations must show measurable speedup over sequential versions
-- **Memory Management**: Be careful with GPU memory allocation and deallocation

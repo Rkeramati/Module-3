@@ -83,60 +83,6 @@ Install all packages in your virtual environment:
 
 ## GPU Setup (Required for Tasks 3.3 and 3.4)
 
-Tasks 3.3 and 3.4 require GPU support and won't run on GitHub CI.
+Tasks 3.3 and 3.4 require GPU support. Use Google Colab for GPU access (Sign up for student version).
 
-### Option 1: Google Colab (Recommended)
-
-Most students should use Google Colab as it provides free GPU access:
-
-1. Upload your assignment files to Colab
-2. Change runtime to GPU (Runtime → Change runtime type → GPU)
-3. Install packages in Colab:
-   ```python
-   !pip install -e ".[dev,extra]"
-   !python -c "import numba.cuda; print('CUDA available:', numba.cuda.is_available())"
-   ```
-
-### Option 2: Local GPU Setup (If you have NVIDIA GPU)
-
-For students with NVIDIA GPUs and CUDA-compatible hardware:
-
-1. **Install CUDA Toolkit**
-   ```bash
-   # Visit: https://developer.nvidia.com/cuda-downloads
-   # Follow instructions for your OS
-   ```
-
-2. **Verify CUDA Installation**
-   ```bash
-   >>> nvcc --version
-   >>> nvidia-smi
-   ```
-
-3. **Install GPU-compatible packages**
-   ```bash
-   >>> pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-   >>> pip install numba[cuda]
-   ```
-
-## Verification
-
-Make sure everything is installed by running:
-
-```bash
->>> python -c "import minitorch; print('Success!')"
-```
-
-Verify that the tensor functionality is available:
-
-```bash
->>> python -c "from minitorch import tensor; print('Module 3 ready!')"
-```
-
-Check if CUDA support is available (for GPU tasks):
-
-```bash
->>> python -c "import numba.cuda; print('CUDA available:', numba.cuda.is_available())"
-```
-
-You're ready to start Module 3!
+Follow this [Google Colab link](https://colab.research.google.com/drive/1gyUFUrCXdlIBz9DYItH9YN3gQ2DvUMsI?usp=sharing), save the file to your drive, select T4 GPU runtime, and follow the instructions in the notebook.
