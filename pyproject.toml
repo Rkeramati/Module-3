@@ -10,7 +10,7 @@ requires-python = ">=3.8,<3.12"
 dependencies = [
     "colorama==0.4.6",
     "hypothesis==6.138.2",
-    "numba-cuda[cu12]>=0.4.0",
+    "numba>=0.61.2",
     "numpy<2.0",
     "pytest==8.4.1",
     "pytest-env==1.1.5",
@@ -21,6 +21,9 @@ dependencies = [
 dev = [
     "pre-commit==4.3.0",
 ]
+cuda = [
+    "numba-cuda[cu12]>=0.4.0",
+]
 extra = [
     "datasets==2.4.0",
     "embeddings==0.0.8",
@@ -30,7 +33,7 @@ extra = [
     "python-mnist",
     "streamlit==1.48.1",
     "streamlit-ace",
-    "torch==2.8.0",
+    "torch>=2.9.0",
     "watchdog==1.0.2",
     "altair==4.2.2",
 ]

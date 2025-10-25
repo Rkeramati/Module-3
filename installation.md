@@ -41,6 +41,14 @@ Each assignment is distributed through a Git repo. Once you accept the assignmen
 >>> cd {{ASSIGNMENT}}
 ```
 
+## Installation
+
+Install all packages in your virtual environment:
+
+```bash
+>>> python -m pip install -e ".[dev,extra]"
+```
+
 ## Syncing Previous Module Files
 
 Module 3 requires files from Module 0, Module 1, and Module 2. Sync them using:
@@ -73,29 +81,11 @@ This will copy the following required files:
 - `project/run_scalar.py`
 - `project/run_tensor.py`
 
-## Installation
-
-Install all packages in your virtual environment:
-
-```bash
->>> python -m pip install -e ".[dev,extra]"
-```
-
 ## GPU Setup (Required for Tasks 3.3 and 3.4)
 
-Tasks 3.3 and 3.4 require GPU support and won't run on GitHub CI.
+Tasks 3.3 and 3.4 require CUDA and should be completed on **Google Colab** with GPU runtime.
 
-### Option 1: Google Colab (Recommended)
-
-Most students should use Google Colab as it provides free GPU access:
-
-1. Upload your assignment files to Colab
-2. Change runtime to GPU (Runtime → Change runtime type → GPU)
-3. Install packages in Colab:
-   ```python
-   !pip install -e ".[dev,extra]"
-   !python -c "import numba.cuda; print('CUDA available:', numba.cuda.is_available())"
-   ```
+Follow the instructions provided in the Colab notebook for GPU setup and testing.
 
 ### Option 2: Local GPU Setup (If you have NVIDIA GPU)
 
