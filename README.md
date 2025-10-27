@@ -4,7 +4,7 @@
 
 **Documentation:** https://minitorch.github.io/
 
-**Overview (Required reading):** https://minitorch.github.io/module3.html
+**Overview (Required reading):** https://minitorch.github.io/module3/module3/
 
 ## Overview
 
