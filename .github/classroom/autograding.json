@@ -22,8 +22,8 @@
     },
     {
       "name": "Style Check",
-      "setup": "",
-      "run": "python -m ruff check . && python -m pyright",
+      "setup": "python -m venv .venv; . .venv/bin/activate; pip3 install -q ruff pre-commit",
+      "run": ". .venv/bin/activate && pre-commit run --files minitorch/fast_ops.py minitorch/cuda_ops.py",
       "input": "",
       "output": "",
       "comparison": "included",
