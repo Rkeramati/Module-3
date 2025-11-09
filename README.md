@@ -38,6 +38,36 @@ Implement CUDA matrix multiplication with shared memory optimization for maximum
 File to edit: `project/run_fast_tensor.py`
 Implement missing functions and train models on all datasets to demonstrate performance improvements.
 
+## Files
+
+This assignment requires the following files from Module 2. You can get these by running:
+
+```bash
+python sync_previous_module.py ../Module-2 .
+```
+
+The files that will be synced are:
+
+- `minitorch/tensor_data.py`
+- `minitorch/tensor_functions.py`
+- `minitorch/tensor_ops.py`
+- `minitorch/operators.py`
+- `minitorch/scalar.py`
+- `minitorch/scalar_functions.py`
+- `minitorch/module.py`
+- `minitorch/autodiff.py`
+- `minitorch/module.py`
+- `project/run_manual.py`
+- `project/run_scalar.py`
+- `project/run_tensor.py`
+- `minitorch/operators.py`
+- `minitorch/module.py`
+- `minitorch/autodiff.py`
+- `minitorch/tensor.py`
+- `minitorch/datasets.py`
+- `minitorch/testing.py`
+- `minitorch/optim.py`
+
 ## Documentation
 
 - **[Installation Guide](installation.md)** - Setup instructions including GPU configuration
